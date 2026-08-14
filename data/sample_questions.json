@@ -1,0 +1,74 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "question": "How does Sam prefer to run standups now?",
+      "answer": "sync standups (switched in June 2024; the async preference from May 2024 is superseded)",
+      "expect": "current",
+      "answer_session_ids": [3]
+    },
+    {
+      "id": "q2",
+      "question": "What did Sam used to prefer for standups before the switch?",
+      "answer": "async standups",
+      "expect": "history",
+      "answer_session_ids": [1]
+    },
+    {
+      "id": "q3",
+      "question": "What did Sam say his preference for standups was when we first discussed it?",
+      "answer": "async standups, updates posted in the channel by noon",
+      "expect": "history",
+      "answer_session_ids": [1]
+    },
+    {
+      "id": "q4",
+      "question": "Where does Sam live now?",
+      "answer": "Bangalore (moved at the end of May 2024)",
+      "expect": "current",
+      "answer_session_ids": [2]
+    },
+    {
+      "id": "q5",
+      "question": "How should we contact Sam about something urgent?",
+      "answer": "Slack (replaced email; the email preference is superseded)",
+      "expect": "current",
+      "answer_session_ids": [3]
+    },
+    {
+      "id": "q6",
+      "question": "What did @soham do last weekend before the Bangalore move?",
+      "answer": "moved to Bangalore",
+      "expect": "event",
+      "answer_session_ids": [2]
+    },
+    {
+      "id": "q7",
+      "question": "What pet does Sam have?",
+      "answer": "a cat named Miso",
+      "expect": "current",
+      "answer_session_ids": [0]
+    },
+    {
+      "id": "q8",
+      "question": "Does Sam use Notion to organise his team?",
+      "answer": "not mentioned — abstain",
+      "expect": "abstain",
+      "answer_session_ids": []
+    },
+    {
+      "id": "q9",
+      "question": "What was Sam's email communication preference?",
+      "answer": "email (superseded by Slack)",
+      "expect": "history",
+      "answer_session_ids": [1]
+    },
+    {
+      "id": "q10",
+      "question": "Does Sam have a dog?",
+      "answer": "not mentioned — abstain",
+      "expect": "abstain",
+      "answer_session_ids": []
+    }
+  ]
+}

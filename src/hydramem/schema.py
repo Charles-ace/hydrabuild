@@ -1,0 +1,46 @@
+"""Graph schema: node labels, relationship types and canonical property keys."""
+
+NODE_PERSON = "Person"
+NODE_FACT = "Fact"
+NODE_EVENT = "Event"
+NODE_PREFERENCE = "Preference"
+NODE_SESSION = "Session"
+
+ALL_NODE_LABELS = [NODE_PERSON, NODE_FACT, NODE_EVENT, NODE_PREFERENCE, NODE_SESSION]
+
+REL_MENTIONED_IN = "MENTIONED_IN"
+REL_SAME_AS = "SAME_AS"
+REL_CONTRADICTS = "CONTRADICTS"
+REL_SUPERSEDES = "SUPERSEDES"
+REL_CAUSED_BY = "CAUSED_BY"
+REL_RELATES_TO = "RELATES_TO"
+
+ALL_REL_TYPES = [
+    REL_MENTIONED_IN,
+    REL_SAME_AS,
+    REL_CONTRADICTS,
+    REL_SUPERSEDES,
+    REL_CAUSED_BY,
+    REL_RELATES_TO,
+]
+
+PROP_ID = "id"
+
+PERSON_NAME = "name"
+PERSON_ALIASES = "aliases"
+
+FACT_SUBJECT = "subject"
+FACT_PREDICATE = "predicate"
+FACT_VALUE = "value"
+FACT_TEXT = "text"
+FACT_CONFIDENCE = "confidence"
+FACT_SUPERSEDED = "superseded"
+FACT_SESSION_INDEX = "session_index"
+FACT_STATED_AT = "stated_at"
+
+EVENT_SUMMARY = "summary"
+EVENT_DATE = "date"
+
+SESSION_INDEX = "session_index"
+SESSION_DATE = "date"
+SESSION_TURN_COUNT = "turn_count"

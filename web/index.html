@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hydramem — graph-native agent memory on HydraDB</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d; --fg: #e6edf3;
+    --muted: #8b949e; --accent: #2f81f7; --ok: #3fb950; --warn: #d29922;
+    --bad: #f85149; --violet: #8957e5;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+         background: var(--bg); color: var(--fg); }
+  header { display: flex; align-items: center; gap: 12px; padding: 14px 20px;
+           border-bottom: 1px solid var(--border); background: var(--panel); }
+  header h1 { font-size: 16px; margin: 0; }
+  header .sub { color: var(--muted); font-size: 12px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.up { background: var(--ok); box-shadow: 0 0 6px var(--ok); }
+  .dot.down { background: var(--bad); }
+  main { display: grid; grid-template-columns: 340px 1fr; gap: 16px; padding: 16px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--border);
+           border-radius: 8px; padding: 14px; }
+  .panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
+              color: var(--muted); margin: 0 0 10px; }
+  .session { border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px;
+             margin-bottom: 8px; cursor: pointer; }
+  .session:hover { border-color: var(--accent); }
+  .session .shead { display: flex; justify-content: space-between; font-size: 12px; }
+  .session .sdate { color: var(--muted); }
+  .session .sbody { font-size: 12px; color: var(--muted); margin-top: 4px;
+                    max-height: 54px; overflow: hidden; white-space: pre-wrap; }
+  button { background: var(--accent); border: none; color: #fff; border-radius: 6px;
+           padding: 8px 12px; font-size: 13px; cursor: pointer; }
+  button.secondary { background: #21262d; border: 1px solid var(--border); }
+  button:hover { filter: brightness(1.15); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .chip { font-size: 12px; padding: 4px 8px; border-radius: 12px;
+          border: 1px solid var(--border); background: #21262d; cursor: pointer;
+          color: var(--fg); }
+  .chip:hover { border-color: var(--accent); }
+  input[type=text] { width: 100%; background: #0d1117; color: var(--fg);
+                     border: 1px solid var(--border); border-radius: 6px;
+                     padding: 9px 10px; font-size: 13px; }
+  .askrow { display: flex; gap: 8px; }
+  .report { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+            margin-top: 10px; }
+  .stat { background: #21262d; border: 1px solid var(--border); border-radius: 6px;
+          padding: 6px 8px; font-size: 12px; text-align: center; }
+  .stat b { display: block; font-size: 16px; color: var(--accent); }
+  .answer { margin-top: 14px; border-radius: 8px; padding: 14px; border: 1px solid var(--ok);
+            background: rgba(63,185,80,.08); }
+  .answer .label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+                   color: var(--ok); }
+  .answer .text { font-size: 15px; margin-top: 6px; }
+  .answer.notfound { border-color: var(--warn); background: rgba(210,153,34,.08); }
+  .answer.notfound .label { color: var(--warn); font-size: 14px; }
+  .answer.notfound .text { color: var(--warn); }
+  .meta { color: var(--muted); font-size: 11px; margin-top: 8px; }
+  svg { width: 100%; height: 320px; background: #0d1117; border: 1px solid var(--border);
+        border-radius: 8px; margin-top: 10px; }
+  .node circle { stroke: #0d1117; stroke-width: 2; }
+  .node text { font-size: 11px; fill: var(--fg); pointer-events: none; }
+  .edge { stroke: #484f58; stroke-width: 1.5; }
+  .edge text { font-size: 9px; fill: var(--muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; margin-top: 8px;
+            color: var(--muted); }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px;
+                         border-radius: 50%; margin-right: 4px; vertical-align: -1px; }
+  .pathstr { font-family: ui-monospace, Consolas, monospace; font-size: 11px;
+             color: var(--muted); margin-top: 8px; word-break: break-all; }
+  .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .histrow { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 12px; }
+  #loading { display: none; color: var(--muted); font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <span id="node-dot" class="dot down"></span>
+  <h1>hydramem</h1>
+  <span class="sub">graph-native agent memory on HydraDB — no vector index</span>
+</header>
+<main>
+  <div>
+    <div class="panel">
+      <h2>Sample transcript (5 sessions · persona: Sam / @soham / S. Ratnaparkhi)</h2>
+      <div id="sessions"></div>
+      <button id="ingest-btn">Ingest into HydraDB</button>
+      <div id="loading">ingesting…</div>
+      <div id="report" class="report" hidden></div>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Ask the memory</h2>
+    <div class="chips" id="chips"></div>
+    <div class="askrow">
+      <input id="q" type="text" placeholder="e.g. How does Sam prefer to run standups now?">
+      <button id="ask-btn">Ask</button>
+    </div>
+    <label class="histrow"><input type="checkbox" id="hist"> history mode (ask about superseded facts)</label>
+    <div id="answer"></div>
+    <div id="graph"></div>
+    <div class="pathstr" id="pathstr"></div>
+    <div class="legend">
+      <span style="background:#2563eb;border-radius:50%;display:inline-block;width:10px;height:10px;margin-right:4px;"></span>Person
+      <span style="background:#7c3aed;border-radius:50%;display:inline-block;width:10px;height:10px;margin-right:4px;"></span>Session
+      <span style="background:#059669;border-radius:50%;display:inline-block;width:10px;height:10px;margin-right:4px;"></span>Fact
+      <span style="background:#d97706;border-radius:50%;display:inline-block;width:10px;height:10px;margin-right:4px;"></span>Preference
+      <span style="background:#db2777;border-radius:50%;display:inline-block;width:10px;height:10px;margin-right:4px;"></span>Event
+    </div>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const COLORS = {Person:"#2563eb", Session:"#7c3aed", Fact:"#059669",
+                Preference:"#d97706", Event:"#db2777"};
+const EDGE_COLORS = {MENTIONED_IN:"#6e7681", SAME_AS:"#58a6ff", CONTRADICTS:"#f85149",
+                     SUPERSEDES:"#d29922", CAUSED_BY:"#a371f7", RELATES_TO:"#a371f7"};
+let sessions = [], questions = [];
+
+async function j(method, url, body) {
+  const r = await fetch(url, {method, headers: {"Content-Type": "application/json"},
+                              body: body ? JSON.stringify(body) : undefined});
+  return r.json();
+}
+
+function nodeLabel(n) {
+  const p = n.props || {};
+  if (n.label === "Person") return p.name || String(n.id);
+  if (n.label === "Session") return "S" + p.session_index;
+  if (n.label === "Fact" || n.label === "Preference") return p.predicate || n.label;
+  if (n.label === "Event") return (p.summary || "event").slice(0, 18);
+  return n.label;
+}
+function nodeDesc(n) {
+  const p = n.props || {};
+  if (n.label === "Person") return (p.aliases ? p.aliases.split(",").join(", ") : "");
+  if (n.label === "Session") return p.date || "";
+  if (n.label === "Fact" || n.label === "Preference")
+    return p.value + (p.superseded ? " (superseded)" : "");
+  if (n.label === "Event") return p.summary || "";
+  return "";
+}
+
+function renderSessions() {
+  $("sessions").innerHTML = sessions.map((s, i) =>
+    `<div class="session"><div class="shead"><span>session ${i} · ${s.turns.length} turns</span>
+     <span class="sdate">${s.date || ""}</span></div>
+     <div class="sbody">${s.turns.slice(0,3).map(t => t.content).join(" / ")}</div></div>`).join("");
+}
+
+function renderReport(rep) {
+  const r = $("report");
+  r.hidden = false;
+  r.innerHTML = Object.entries({
+    sessions: rep.sessions_ingested, people: rep.people, facts: rep.facts,
+    events: rep.events, preferences: rep.preferences, same_as: rep.same_as_edges,
+    contradictions: rep.contradictions, supersessions: rep.supersessions
+  }).map(([k, v]) => `<div class="stat"><b>${v}</b>${k}</div>`).join("");
+}
+
+function renderAnswer(res) {
+  const el = $("answer");
+  if (res.status === "not_found") {
+    el.className = "answer notfound";
+    el.innerHTML = `<div class="label">NOT FOUND IN MEMORY — structural abstention</div>
+      <div class="text">${res.answer}</div>
+      <div class="meta">reason: ${res.reason} · traversal returned no evidence path</div>`;
+    $("graph").innerHTML = "";
+    $("pathstr").textContent = "";
+    return;
+  }
+  el.className = "answer";
+  el.innerHTML = `<div class="label">Answer · evidence-backed</div>
+    <div class="text">${escapeHtml(res.answer)}</div>
+    <div class="meta">terminal node: ${res.terminal.label} #${res.terminal.id} · procedure: ${res.procedure} ·
+    superseded: ${res.terminal.superseded ? "yes" : "no"} · session ${res.terminal.session_index}</div>`;
+  renderGraph(res.evidence);
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function renderGraph(ev) {
+  if (!ev || !ev.nodes.length) { $("graph").innerHTML = ""; $("pathstr").textContent = ""; return; }
+  const W = 900, H = 320;
+  const nodes = ev.nodes.map(n => ({...n, x: 0, y: 0, vx: 0, vy: 0}));
+  const ids = new Map(nodes.map((n, i) => [n.id, i]));
+  const edges = ev.edges.filter(e => ids.has(e.src) && ids.has(e.dst))
+    .map(e => ({...e, si: ids.get(e.src), di: ids.get(e.dst)}));
+  const angle = i => 2 * Math.PI * i / nodes.length;
+  nodes.forEach((n, i) => { n.x = W/2 + Math.cos(angle(i)) * W/3.2; n.y = H/2 + Math.sin(angle(i)) * H/3.2; });
+  for (let iter = 0; iter < 220; iter++) {
+    nodes.forEach((a, i) => { nodes.forEach((b, j) => {
+      if (i >= j) return;
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const d = Math.max(Math.hypot(dx, dy), 1);
+      const f = 9000 / (d * d);
+      const fx = dx / d * f, fy = dy / d * f;
+      a.vx += fx; a.vy += fy; b.vx -= fx; b.vy -= fy;
+    });});
+    nodes.forEach((a, i) => { nodes.forEach((b, j) => {
+      if (i >= j) return;
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const d = Math.hypot(dx, dy);
+      const f = (d - 130) * 0.02;
+      a.vx -= dx / d * f; a.vy -= dy / d * f;
+      b.vx += dx / d * f; b.vy += dy / d * f;
+    });});
+    nodes.forEach(n => { n.vx *= 0.55; n.vy *= 0.55; n.x += n.vx; n.y += n.vy;
+      n.x = Math.max(40, Math.min(W-40, n.x)); n.y = Math.max(40, Math.min(H-40, n.y)); });
+  }
+  let s = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  s += edges.map(e => {
+    const a = nodes[e.si], b = nodes[e.di];
+    const mx = (a.x+b.x)/2, my = (a.y+b.y)/2 - 8;
+    return `<line class="edge" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"
+      stroke="${EDGE_COLORS[e.type]||"#6e7681"}" marker-end="url(#arr)"/>
+      <text x="${mx}" y="${my}" text-anchor="middle">${e.type}</text>`;
+  }).join("");
+  s += `<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 Z" fill="#484f58"/></marker></defs>`;
+  s += nodes.map(n => {
+    const c = COLORS[n.label] || "#8b949e";
+    const lines = [nodeLabel(n), nodeDesc(n)].filter(Boolean).slice(0, 2);
+    let body = `<circle cx="${n.x}" cy="${n.y}" r="26" fill="${c}" opacity="0.9"/>`;
+    lines.forEach((txt, i) => {
+      const dy = i === 0 ? -2 : 13;
+      const size = i === 0 ? 11 : 9;
+      body += `<text x="${n.x}" y="${n.y + dy}" text-anchor="middle" font-size="${size}"
+        fill="${i === 0 ? "#fff" : "#e6edf3"}">${escapeHtml(String(txt).slice(0, 22))}</text>`;
+    });
+    return `<g class="node">${body}</g>`;
+  }).join("");
+  s += "</svg>";
+  $("graph").innerHTML = s;
+  $("pathstr").textContent = "evidence path: " +
+    ev.nodes.map(n => `${n.label}(${nodeLabel(n)})`).join(" → ");
+}
+
+async function init() {
+  const data = await j("GET", "/api/sample");
+  sessions = data.sessions; questions = data.questions;
+  renderSessions();
+  $("chips").innerHTML = questions.map(q => `<button class="chip" data-q="${escapeHtml(q.question)}">${q.id}</button>`).join("");
+  document.querySelectorAll(".chip").forEach(c =>
+    c.addEventListener("click", () => { $("q").value = c.dataset.q; ask(); }));
+  const health = await j("GET", "/api/health");
+  $("node-dot").className = "dot " + (health.ok ? "up" : "down");
+}
+async function ingest() {
+  $("loading").style.display = "block";
+  $("ingest-btn").disabled = true;
+  try {
+    const res = await j("POST", "/api/ingest", {sessions});
+    renderReport(res.report);
+  } finally {
+    $("loading").style.display = "none";
+    $("ingest-btn").disabled = false;
+  }
+}
+async function ask() {
+  const question = $("q").value.trim();
+  if (!question) return;
+  const history_mode = $("hist").checked;
+  const res = await j("POST", "/api/query", {question});
+  renderAnswer(res);
+}
+$("ingest-btn").addEventListener("click", ingest);
+$("ask-btn").addEventListener("click", ask);
+$("q").addEventListener("keydown", e => { if (e.key === "Enter") ask(); });
+init();
+</script>
+</body>
+</html>

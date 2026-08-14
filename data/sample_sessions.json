@@ -1,0 +1,98 @@
+{
+  "persona": "Sam (also goes by @soham / S. Ratnaparkhi)",
+  "sessions": [
+    {
+      "id": 0,
+      "date": "2024-05-02",
+      "turns": [
+        {
+          "role": "user",
+          "content": "hey! i'm sam — some people call me @soham, or S. Ratnaparkhi. nice to meet you.",
+          "has_answer": true
+        },
+        {
+          "role": "assistant",
+          "content": "Great to meet you Sam. What do you do?"
+        },
+        {
+          "role": "user",
+          "content": "i'm an engineering manager at HydraDB. outside work i have a cat called Miso.",
+          "has_answer": true
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "date": "2024-05-09",
+      "turns": [
+        {
+          "role": "user",
+          "content": "quick note on team rituals: i prefer async standups — post your update in the channel and i'll catch up by noon.",
+          "has_answer": true
+        },
+        {
+          "role": "assistant",
+          "content": "Got it, async standups, updates by noon."
+        },
+        {
+          "role": "user",
+          "content": "also, please reach me on email rather than Slack, it's where i live.",
+          "has_answer": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "2024-06-01",
+      "turns": [
+        {
+          "role": "user",
+          "content": "small life update — i moved to Bangalore last weekend. adapting to the humidity!",
+          "has_answer": true
+        },
+        {
+          "role": "assistant",
+          "content": "Welcome to Bangalore! Big change."
+        },
+        {
+          "role": "user",
+          "content": "thanks! started running in the mornings to explore the city."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "date": "2024-06-20",
+      "turns": [
+        {
+          "role": "user",
+          "content": "ok change of plans on the standups — sync standups are working much better for the team, we switched last week. async didn't stick.",
+          "has_answer": true
+        },
+        {
+          "role": "assistant",
+          "content": "Noted, moving standups to sync."
+        },
+        {
+          "role": "user",
+          "content": "and if anything urgent comes up, Slack me — i've gone off email entirely this quarter.",
+          "has_answer": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "date": "2024-07-04",
+      "turns": [
+        {
+          "role": "user",
+          "content": "counting down — getting married in December! venue's locked in."
+        },
+        {
+          "role": "assistant",
+          "content": "Congratulations Sam!"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Env / secrets
+.env
+*.key
+!hydradb-data/auth-token
+
+# HydraDB local runtime data
+hydradb-data/
+
+# Benchmark artifacts (results are committed; raw data stays out)
+data/longmemeval_*.json
+!data/longmemeval_oracle_sample.json
+bench/*.jsonl
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
