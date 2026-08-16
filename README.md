@@ -59,7 +59,10 @@ Verified end-to-end against a live HydraDB node (v0.1.0, Docker):
 
 - ingestion of 5 sample sessions (deterministic-id MERGE, idempotent),
 - 10/10 on the demo question suite (current / history / event / abstain),
-- zero hallucinated answers by construction (structural abstention).
+- zero hallucinated answers by construction — every answer traces to a real
+  graph node, never invented from nothing (the gap analysis below shows cases
+  where the *wrong* grounded fact was retrieved; that is a retrieval miss, not
+  an invention).
 
 No claim is made about competitive LongMemEval performance — measured
 numbers (live LLMExtractor run, strict match) are in `bench-results/` and the
