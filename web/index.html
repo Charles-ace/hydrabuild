@@ -901,12 +901,12 @@ async function checkHealth() {
     const data = await api("GET", "/api/health");
     const dot = $("status-dot");
     const txt = $("status-text");
-    if (data.is_live) {
+    if (data.connected) {
       dot.className = "status-dot active";
       txt.textContent = "HydraDB Bolt Live (v0.1.0)";
     } else {
       dot.className = "status-dot";
-      txt.textContent = "Embedded Graph Engine (HydraDB Offline)";
+      txt.textContent = "HydraDB Node Unreachable";
     }
   } catch (err) {
     $("status-dot").className = "status-dot offline";
