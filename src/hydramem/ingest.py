@@ -114,14 +114,15 @@ class Ingestor:
             mention_id = self.client.upsert_person_row(person_rows, name, aliases)
             report.people += 1
             mention_person.append({"src": mention_id, "dst": sid})
-            canonical = self._resolve_person(name, aliases, mention_id)
+            canonical, conf, reason = self._resolve_person(name, aliases, mention_id, extraction)
             if canonical is not None and canonical != mention_id:
                 same_as_rows.append(
                     {
                         "src": mention_id,
                         "dst": canonical,
                         "eid": _edge_id(schema.REL_SAME_AS, mention_id, canonical),
-                        "confidence": 0.99,
+                        "confidence": conf,
+                        "reason": reason,
                     }
                 )
                 report.same_as_edges += 1
@@ -186,33 +187,79 @@ class Ingestor:
             }
         )
 
-    def _resolve_person(self, name: str, aliases: str, mention_id: int) -> int | None:
+    def _resolve_person(
+        self,
+        name: str,
+        aliases: str,
+        mention_id: int,
+        extraction: Extraction | None = None,
+    ) -> tuple[int | None, float, str]:
+        """Multi-signal entity resolution: string similarity + structural graph co-occurrence."""
         norm = normalize_name(name)
         alias_set = {normalize_name(a) for a in aliases.split(",") if a}
-        best: tuple[float, int] = (0.0, -1)
+        best: tuple[float, int, str] = (0.0, -1, "none")
         rows = self.client.run(
             "MATCH (p:Person) WHERE p.id <> $id RETURN p.id AS id, p.name AS name, p.aliases AS aliases",
             {"id": mention_id},
         )
+        
+        # Attributes associated with current mention in this session
+        current_facts: set[tuple[str, str]] = set()
+        if extraction:
+            for f in extraction.facts:
+                if normalize_name(f.get("subject", "")) == norm or not norm:
+                    current_facts.add((f.get("predicate", ""), str(f.get("value", "")).lower().strip()))
+            for p in extraction.preferences:
+                if normalize_name(p.get("subject", "")) == norm or not norm:
+                    current_facts.add((p.get("predicate", ""), str(p.get("value", "")).lower().strip()))
+
         for row in rows:
+            other_id = row["id"]
             other_norm = normalize_name(row["name"])
-            score = 0.0
+            string_score = 0.0
             if other_norm == norm:
-                score = 1.0
+                string_score = 1.0
             elif other_norm in alias_set:
-                score = 0.99
+                string_score = 0.95
             else:
-                score = SequenceMatcher(None, norm, other_norm).ratio()
+                string_score = SequenceMatcher(None, norm, other_norm).ratio()
             other_aliases = {
                 normalize_name(a) for a in (row.get("aliases") or "").split(",") if a
             }
             if norm in other_aliases:
-                score = max(score, 0.99)
-            if score > best[0]:
-                best = (score, row["id"])
+                string_score = max(string_score, 0.95)
+
+            # Structural signal: facts and preferences already attached to other_id / other person in the graph
+            structural_score = 0.0
+            match_reason = "string_similarity"
+            if current_facts:
+                existing_facts = self.client.run(
+                    "MATCH (f:Fact) WHERE f.subject = $subj RETURN f.predicate AS predicate, f.value AS value UNION "
+                    "MATCH (p:Preference) WHERE p.subject = $subj RETURN p.predicate AS predicate, p.value AS value",
+                    {"subj": row["name"]},
+                )
+                other_fact_set = {
+                    (r.get("predicate", ""), str(r.get("value", "")).lower().strip())
+                    for r in existing_facts
+                }
+                shared_facts = current_facts & other_fact_set
+                if shared_facts:
+                    union_size = len(current_facts | other_fact_set)
+                    structural_score = len(shared_facts) / max(1, union_size)
+
+            # Combine signals: strong graph attribute co-occurrence links distinct name mentions
+            if structural_score >= 0.3:
+                combined_score = max(string_score, 0.4 * string_score + 0.3 + 0.5 * structural_score)
+                match_reason = "structural_graph_overlap" if string_score < SAME_AS_THRESHOLD else "hybrid_string_structural"
+            else:
+                combined_score = string_score
+
+            if combined_score > best[0]:
+                best = (combined_score, other_id, match_reason)
+
         if best[0] >= SAME_AS_THRESHOLD:
-            return best[1]
-        return None
+            return best[1], best[0], best[2]
+        return None, 0.0, "none"
 
     def _contradiction_rows(
         self,

@@ -17,6 +17,9 @@ Verified against a live `graph-node` v0.1.0 (Aug 2026):
   repo therefore uses SSpaths per resolved source id (see query.py).
 - Paths come back as driver Path objects: node.element_id is the node id,
   node.labels and node._properties carry the rest.
+
+STRICT MODE: Every query and write executes directly over Bolt against HydraDB.
+No stubs, no in-memory fallbacks. If HydraDB is down, operations fail loudly.
 """
 
 from __future__ import annotations
@@ -40,16 +43,20 @@ class HydraClient:
         token: str = config.BOLT_AUTH_TOKEN,
         database: str = config.DATABASE,
     ) -> None:
-        self._driver = GraphDatabase.driver(uri, auth=("neo4j", token))
+        self._uri = uri
+        self._token = token
         self._database = database
+        self._driver = GraphDatabase.driver(uri, auth=("neo4j", token))
 
     def verify(self) -> None:
+        """Verify connectivity to HydraDB; raises loudly if unreachable."""
         self._driver.verify_connectivity()
 
     def close(self) -> None:
         self._driver.close()
 
     def run(self, query: str, params: Mapping[str, Any] | None = None) -> list[dict]:
+        """Execute a Cypher query on HydraDB via Bolt session."""
         with self._driver.session(database=self._database) as session:
             records = list(session.run(query, params or {}))
             return [_record_to_plain(r) for r in records]
@@ -61,6 +68,7 @@ class HydraClient:
     # -- writes -----------------------------------------------------------
 
     def reset(self) -> None:
+        """Delete all graph nodes and relationships in HydraDB."""
         for label in schema.ALL_NODE_LABELS:
             self.run(f"MATCH (n:{label}) DETACH DELETE n")
 

@@ -1,0 +1,28 @@
+{
+  "tag": "llm-oracle16b",
+  "dataset": "C:\\Users\\akpan\\OneDrive\\Desktop\\Builds\\hydrabuild\\data\\longmemeval_oracle_sample.json",
+  "dataset_version": "longmemeval-cleaned-2025-09 oracle 500q, 16-question balanced sample",
+  "extractor": "LLMExtractor",
+  "extractor_mode": "llm",
+  "llm_model": "openai/gpt-4o-mini",
+  "total_questions": 16,
+  "correct": 0,
+  "accuracy": 0.0,
+  "abstentions": 9,
+  "abstention_rate": 0.5625,
+  "abstention_precision": 0.0,
+  "abstention_recall": 0.0,
+  "gold_empty_questions": 0,
+  "mode": "strict-match (LongMemEval rubric)",
+  "run_at_utc": "2026-08-16T07:56:30.743350+00:00",
+  "ingest": {
+    "sessions_ingested": 26,
+    "people": 122,
+    "facts": 96,
+    "events": 9,
+    "preferences": 67,
+    "same_as_edges": 0,
+    "contradictions": 2,
+    "supersessions": 2
+  }
+}

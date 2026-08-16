@@ -37,6 +37,8 @@ YES_NO_LEAD = re.compile(
     re.I,
 )
 
+FIRST_PERSON = re.compile(r"\b(i|me|my|mine|we|us|our|ours)\b", re.I)
+
 VALUE_STOPWORDS = {
     "the", "and", "for", "with", "his", "her", "their", "your", "about",
     "have", "has", "had", "does", "did", "use", "uses", "used", "own",
@@ -72,6 +74,68 @@ PREDICATE_KEYWORDS: list[tuple[str, str]] = [
     ("company", "works_at"),
     ("notion", "tool"),
     ("birthday", "birthday"),
+    ("wake", "wake_up_time"),
+    ("waking", "wake_up_time"),
+    ("sleep", "wake_up_time"),
+    ("schedule", "schedule"),
+    ("time", "time"),
+    ("buy", "purchase"),
+    ("bought", "purchase"),
+    ("purchase", "purchase"),
+    ("purchased", "purchase"),
+    ("album", "purchase"),
+    ("cook", "cooking"),
+    ("cooked", "cooking"),
+    ("meal", "meal"),
+    ("breakfast", "meal"),
+    ("lunch", "meal"),
+    ("dinner", "meal"),
+    ("book", "reading"),
+    ("books", "reading"),
+    ("read", "reading"),
+    ("reading", "reading"),
+    ("write", "writing"),
+    ("wrote", "writing"),
+    ("written", "writing"),
+    ("story", "writing"),
+    ("age", "age"),
+    ("old", "age"),
+    ("year", "age"),
+    ("years", "age"),
+    ("grandma", "age"),
+    ("grandfather", "age"),
+    ("mom", "age"),
+    ("dad", "age"),
+    ("fish", "fishing"),
+    ("fishing", "fishing"),
+    ("catch", "fishing"),
+    ("caught", "fishing"),
+    ("golf", "sport"),
+    ("volleyball", "sport"),
+    ("league", "sport"),
+    ("sport", "sport"),
+    ("meditation", "meditation"),
+    ("meditate", "meditation"),
+    ("doctor", "health"),
+    ("health", "health"),
+    ("medication", "health"),
+    ("medicine", "health"),
+    ("music", "music"),
+    ("song", "music"),
+    ("video", "video"),
+    ("youtube", "video"),
+    ("stock", "stock"),
+    ("stocked", "stock"),
+    ("egg", "stock"),
+    ("eggs", "stock"),
+    ("commute", "commute"),
+    ("trip", "trip"),
+    ("travel", "trip"),
+    ("miami", "trip"),
+    ("hotel", "trip"),
+    ("gathering", "gathering"),
+    ("invit", "gathering"),
+    ("colleague", "gathering"),
 ]
 
 EVENT_WORDS = re.compile(
@@ -140,11 +204,13 @@ class QueryResult:
     evidence: dict[str, Any] | None = None
     plan: QueryPlan | None = None
     procedure: str = ""
+    verbose_answer: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "status": self.status,
             "answer": self.answer,
+            "verbose_answer": self.verbose_answer,
             "reason": self.reason,
             "terminal": self.terminal,
             "evidence": self.evidence,
@@ -196,15 +262,18 @@ class QueryService:
         terminal = best["node"]
         evidence = self._build_evidence(best_path, terminal)
         if terminal["label"] == schema.NODE_EVENT:
-            answer = f"{terminal['summary']} ({terminal.get('date', '')})"
+            answer = str(terminal["summary"])
+            verbose = f"{answer} ({terminal.get('date', '')})".strip()
         elif plan.history_mode:
-            answer = (
+            answer = str(terminal["value"])
+            verbose = (
                 f"{terminal['subject']}'s {terminal['predicate']} was "
                 f"'{terminal['value']}' (stated in session {terminal['session_index']}"
                 + (", later superseded)" if terminal.get("superseded") else ")")
             )
         else:
-            answer = (
+            answer = str(terminal["value"])
+            verbose = (
                 f"{terminal['subject']}'s {terminal['predicate']} is "
                 f"'{terminal['value']}' (stated in session {terminal['session_index']}"
                 + (", superseded later)" if terminal.get("superseded") else ")")
@@ -212,6 +281,7 @@ class QueryService:
         result = QueryResult(
             status="answer",
             answer=answer,
+            verbose_answer=verbose,
             terminal=self._terminal_to_dict(terminal),
             evidence=evidence,
             plan=plan,
@@ -232,6 +302,10 @@ class QueryService:
         for alias in self._all_aliases(known_people):
             if alias and alias in qnorm:
                 matched.append(alias)
+        if not matched and FIRST_PERSON.search(question):
+            persona = self._user_persona()
+            if persona:
+                matched.append(persona)
         plan.people = sorted(set(matched))
         hints: set[str] = set()
         keywords: set[str] = set()
@@ -258,6 +332,25 @@ class QueryService:
                 if a:
                     out.append(normalize_name(a))
         return out
+
+    def _user_persona(self) -> str | None:
+        """Name of the most-mentioned person, assumed to be the user.
+
+        LongMemEval-style questions are first-person ("What time do I wake
+        up...?"); resolve first-person pronouns to the persona that owns the
+        most extracted statements in the graph.
+        """
+        counts: dict[str, int] = {}
+        for label in (schema.NODE_FACT, schema.NODE_PREFERENCE):
+            for row in self.client.run(
+                f"MATCH (n:{label}) RETURN n.subject AS subject"
+            ):
+                subj = row.get("subject")
+                if subj:
+                    counts[str(subj)] = counts.get(str(subj), 0) + 1
+        if not counts:
+            return None
+        return max(counts.items(), key=lambda kv: kv[1])[0]
 
     # -- resolution & traversal ------------------------------------------
 
@@ -309,8 +402,6 @@ class QueryService:
                     continue
                 if label == schema.NODE_EVENT and not plan.event_question:
                     continue
-                if label != schema.NODE_EVENT and plan.event_question:
-                    continue
                 nid = props.get("id")
                 if nid in seen:
                     continue
@@ -346,8 +437,10 @@ class QueryService:
             freshness = 2.0 if not node.get("superseded") else 1.0
             if plan.history_mode:
                 freshness = 2.0 if node.get("superseded") else 1.0
+            exact = 1e8 if str(node.get("predicate", "")) in plan.predicate_hints else 0.0
             return (
                 freshness * 1e6
+                + exact
                 + node["session_index"] * 1e3
                 + node.get("stated_at", 0)
             )

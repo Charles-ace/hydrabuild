@@ -45,6 +45,8 @@ def chat_json(system: str, user: str) -> Any:
         "response_format": {"type": "json_object"},
         "temperature": 0,
     }
+    if config.LLM_MAX_TOKENS:
+        payload["max_tokens"] = config.LLM_MAX_TOKENS
     headers = {
         "Authorization": f"Bearer {config.LLM_API_KEY}",
         "Content-Type": "application/json",

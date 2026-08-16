@@ -16,6 +16,7 @@ hydradb-data/
 # Benchmark artifacts (results are committed; raw data stays out)
 data/longmemeval_*.json
 !data/longmemeval_oracle_sample.json
+!data/longmemeval_abstain_sample.json
 bench/*.jsonl
 
 # Editors / OS

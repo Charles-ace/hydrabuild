@@ -191,10 +191,22 @@ class MockExtractor:
         return extraction
 
 
-def build_extractor() -> LLMExtractor | MockExtractor:
-    if llm_is_configured():
+def build_extractor(mode: str | None = None) -> LLMExtractor | MockExtractor:
+    from . import config
+
+    target_mode = mode or config.LLM_MODE
+    if target_mode == "llm":
+        if not config.LLM_API_KEY:
+            raise RuntimeError(
+                "LLMExtractor requested (HYDRA_MEM_LLM_MODE=llm) but neither HYDRA_MEM_LLM_API_KEY "
+                "nor OPENROUTER_API_KEY is configured in the environment. Failing loudly to prevent "
+                "silent mock fallback."
+            )
         return LLMExtractor()
-    return MockExtractor()
+    elif target_mode == "mock":
+        return MockExtractor()
+    else:
+        raise ValueError(f"Unknown extractor mode '{target_mode}'. Expected 'llm' or 'mock'.")
 
 
 def llm_is_configured() -> bool:

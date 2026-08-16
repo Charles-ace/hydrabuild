@@ -1,0 +1,25 @@
+{
+  "tag": "mock-smoke",
+  "dataset": "C:\\Users\\akpan\\OneDrive\\Desktop\\Builds\\hydrabuild\\data\\longmemeval_oracle_sample.json",
+  "dataset_version": "unknown",
+  "extractor": "MockExtractor",
+  "extractor_mode": "mock",
+  "llm_model": "none",
+  "total_questions": 4,
+  "correct": 0,
+  "accuracy": 0.0,
+  "abstentions": 4,
+  "abstention_rate": 1.0,
+  "mode": "strict-match (LongMemEval rubric)",
+  "run_at_utc": "2026-08-16T00:38:30.373227+00:00",
+  "ingest": {
+    "sessions_ingested": 2,
+    "people": 2,
+    "facts": 0,
+    "events": 0,
+    "preferences": 0,
+    "same_as_edges": 0,
+    "contradictions": 0,
+    "supersessions": 0
+  }
+}

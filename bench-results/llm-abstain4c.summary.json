@@ -1,0 +1,28 @@
+{
+  "tag": "llm-abstain4c",
+  "dataset": "C:\\Users\\akpan\\OneDrive\\Desktop\\Builds\\hydrabuild\\data\\longmemeval_abstain_sample.json",
+  "dataset_version": "longmemeval-cleaned-2025-09 S split, abstention (_abs) questions, 12-session cap, post-fix parsing",
+  "extractor": "LLMExtractor",
+  "extractor_mode": "llm",
+  "llm_model": "openai/gpt-4o-mini",
+  "total_questions": 4,
+  "correct": 0,
+  "accuracy": 0.0,
+  "abstentions": 0,
+  "abstention_rate": 0.0,
+  "abstention_precision": 0.0,
+  "abstention_recall": 0.0,
+  "gold_empty_questions": 4,
+  "mode": "strict-match (LongMemEval rubric)",
+  "run_at_utc": "2026-08-16T13:15:30.582036+00:00",
+  "ingest": {
+    "sessions_ingested": 48,
+    "people": 176,
+    "facts": 178,
+    "events": 11,
+    "preferences": 45,
+    "same_as_edges": 0,
+    "contradictions": 0,
+    "supersessions": 0
+  }
+}

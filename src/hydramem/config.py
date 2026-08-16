@@ -14,6 +14,7 @@ LLM_API_KEY = os.environ.get(
     "HYDRA_MEM_LLM_API_KEY", os.environ.get("OPENROUTER_API_KEY", "")
 )
 LLM_MODEL = os.environ.get("HYDRA_MEM_LLM_MODEL", "openai/gpt-4o-mini")
+LLM_MAX_TOKENS = int(os.environ["HYDRA_MEM_LLM_MAX_TOKENS"]) if os.environ.get("HYDRA_MEM_LLM_MAX_TOKENS") else None
 LLM_MODE = os.environ.get("HYDRA_MEM_LLM_MODE", "llm" if LLM_API_KEY else "mock")
 
 MAX_PATH_LEN = int(os.environ.get("HYDRA_MEM_MAX_PATH_LEN", "3"))

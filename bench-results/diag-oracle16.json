@@ -1,0 +1,2763 @@
+[
+  {
+    "qid": "q1",
+    "conv_id": "temporal-rea-gpt4_2c50253f",
+    "question": "What time do I wake up on Tuesdays and Thursdays?",
+    "gold": "6:45 AM",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 4,
+      "facts": 14,
+      "events": 0,
+      "preferences": 11,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "daily_meditation_practice",
+          "value": "at least 10 minutes",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "feeling",
+          "value": "more centered and calm",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "feeling",
+          "value": "more energized and focused throughout the day",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "goals_for_meditation",
+          "value": "improve overall well-being",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "goals_for_meditation",
+          "value": "feel more centered, calm, and focused",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "goals_for_meditation",
+          "value": "establish a consistent meditation practice and notice benefits in daily life",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "interested_in",
+          "value": "exploring how meditation can improve relationships",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "interested_in",
+          "value": "overnight oats and chia seed pudding",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "interested_in",
+          "value": "exploring how meditation can help with stress and anxiety",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "meditation_practice",
+          "value": "waking up 15 minutes earlier on Tuesdays and Thursdays",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "meditation_time",
+          "value": "right after morning walk",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "morning_routine",
+          "value": "going for a 30-minute walk before work",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "usual_wake_up_time",
+          "value": "8:30 AM",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "wake_up_time",
+          "value": "7:00 AM",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "breakfast_interest",
+          "value": "overnight oats",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "breakfast_interest",
+          "value": "chia seed pudding",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "exploring_resources",
+          "value": "UCLA Mindful Awareness Research Center and Tara Brach's website",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "meditation_apps",
+          "value": "Headspace and Insight Timer",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "milk_choice",
+          "value": "almond milk",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "peanut_butter_choice",
+          "value": "creamy peanut butter",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "topping_choice",
+          "value": "cinnamon",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "topping_choice",
+          "value": "sliced banana",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "walking_enjoyment",
+          "value": "listening to music",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "walking_enjoyment",
+          "value": "taking in the sights and sounds",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "walking_goal",
+          "value": "walk a certain distance or complete a certain number of steps",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "time",
+          "wake_up_time"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 31,
+      "candidate_count": 3,
+      "status": "answer",
+      "reason": "",
+      "answer": "7:00 AM",
+      "verbose": "user's wake_up_time is '7:00 AM' (stated in session 0)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "time",
+          "wake_up_time"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 56,
+      "candidate_count": 3,
+      "status": "answer",
+      "reason": "",
+      "answer": "7:00 AM",
+      "verbose": "user's wake_up_time is '7:00 AM' (stated in session 0)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q2",
+    "conv_id": "temporal-rea-gpt4_213fd887",
+    "question": "Which event did I participate in first, the volleyball league or the charity 5K run to raise money for a local children's hospital?",
+    "gold": "volleyball league",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 4,
+      "facts": 12,
+      "events": 0,
+      "preferences": 6,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "experience_with_event",
+          "value": "great experience",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "fitness_focus",
+          "value": "cardio and strength training",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "improvement",
+          "value": "endurance",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "interest",
+          "value": "joining a tennis league",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "joined_league",
+          "value": "recreational volleyball league",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "location",
+          "value": "local community center",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "next_event",
+          "value": "20-mile cycling event",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "playing_day",
+          "value": "Thursday evening",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "playing_duration",
+          "value": "2 months",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "previous_experience",
+          "value": "played tennis in high school",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "recent_event",
+          "value": "charity 5K run for a local children's hospital",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "sports",
+          "value": "volleyball",
+          "si": 1,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "decision_status",
+          "value": "not sure if ready to commit to tennis league",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "fitness_focus",
+          "value": "endurance",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "interest_in_activity",
+          "value": "joining a tennis league",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "motivation_strategy",
+          "value": "celebrate small victories",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "motivation_strategy",
+          "value": "find a cycling buddy",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "training_style",
+          "value": "strength training for legs and glutes",
+          "si": 1,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "sport"
+        ],
+        "history_mode": true,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 24,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "volleyball",
+      "verbose": "user's sports was 'volleyball' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "sport"
+        ],
+        "history_mode": true,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 42,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "volleyball",
+      "verbose": "user's sports was 'volleyball' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q3",
+    "conv_id": "temporal-rea-gpt4_74aed68e",
+    "question": "How many days passed between the day I replaced my spark plugs and the day I participated in the Turbocharged Tuesdays auto racking event?",
+    "gold": "29 days. 30 days (including the last day) is also acceptable.",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 4,
+      "facts": 14,
+      "events": 0,
+      "preferences": 0,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "average_speed",
+          "value": "85mph",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "brake_fluid_upgrade",
+          "value": "yes",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "brake_pad_discount",
+          "value": "yes",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "brake_pad_upgrade",
+          "value": "yes",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "bushing_inspection_need",
+          "value": "yes",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "bushing_replacement_need",
+          "value": "yes",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "car_issue",
+          "value": "slight misfire",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "car_performance_goal",
+          "value": "optimize for auto racking event",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "completed_event",
+          "value": "Turbocharged Tuesdays",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "completed_event",
+          "value": "Winter Tune-Up",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "event_type",
+          "value": "auto racing",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "previous_dyno_test_event",
+          "value": "Tune-Up Saturday",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "previous_dyno_test_horsepower",
+          "value": "240",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "spark_plug_brand",
+          "value": "NGK",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 20,
+      "candidate_count": 14,
+      "status": "answer",
+      "reason": "",
+      "answer": "240",
+      "verbose": "user's previous_dyno_test_horsepower is '240' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 34,
+      "candidate_count": 14,
+      "status": "answer",
+      "reason": "",
+      "answer": "240",
+      "verbose": "user's previous_dyno_test_horsepower is '240' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q4",
+    "conv_id": "multi-sessio-157a136e",
+    "question": "How many years older is my grandma than me?",
+    "gold": "43",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 6,
+      "facts": 6,
+      "events": 0,
+      "preferences": 4,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "aunt",
+          "aliases": ""
+        },
+        {
+          "name": "grandma",
+          "aliases": ""
+        },
+        {
+          "name": "mom",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "grandma",
+          "predicate": "age",
+          "value": "75",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "grandma",
+          "predicate": "birthday_celebration",
+          "value": "inspiring",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "grandma",
+          "predicate": "energetic_and_sharp",
+          "value": "at 75",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "mom",
+          "predicate": "made_cake",
+          "value": "chocolate mocha cake",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "age",
+          "value": "32",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "family_gathering",
+          "value": "soon",
+          "si": 1,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "day_trip",
+          "value": "considering Montserrat but focusing on the city",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "snack_appeal",
+          "value": "both kids and seniors",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "snack_options",
+          "value": "easy and healthy",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "travel_style",
+          "value": "exploring neighborhoods and getting a local feel",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "grandma"
+        ],
+        "predicate_hints": [
+          "age"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        7165474563511306773
+      ],
+      "path_count": 12,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "75",
+      "verbose": "grandma's age is '75' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "grandma"
+        ],
+        "predicate_hints": [
+          "age"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        7165474563511306773
+      ],
+      "path_count": 16,
+      "candidate_count": 2,
+      "status": "answer",
+      "reason": "",
+      "answer": "75",
+      "verbose": "grandma's age is '75' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q5",
+    "conv_id": "multi-sessio-bf659f65",
+    "question": "How many music albums or EPs have I purchased or downloaded?",
+    "gold": "3",
+    "n_sessions": 3,
+    "ingest": {
+      "sessions_ingested": 3,
+      "people": 22,
+      "facts": 9,
+      "events": 4,
+      "preferences": 9,
+      "same_as_edges": 0,
+      "contradictions": 1,
+      "supersessions": 1
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "Anthony Fantano",
+          "aliases": ""
+        },
+        {
+          "name": "Banks",
+          "aliases": ""
+        },
+        {
+          "name": "Billie Eilish",
+          "aliases": ""
+        },
+        {
+          "name": "Charli XCX",
+          "aliases": ""
+        },
+        {
+          "name": "Halsey",
+          "aliases": ""
+        },
+        {
+          "name": "Kali Uchis",
+          "aliases": ""
+        },
+        {
+          "name": "Kevin Parker",
+          "aliases": "Tame Impala's Kevin Parker"
+        },
+        {
+          "name": "Lana Del Rey",
+          "aliases": ""
+        },
+        {
+          "name": "Lorde",
+          "aliases": ""
+        },
+        {
+          "name": "Lykke Li",
+          "aliases": ""
+        },
+        {
+          "name": "MØ",
+          "aliases": ""
+        },
+        {
+          "name": "Rina Sawayama",
+          "aliases": ""
+        },
+        {
+          "name": "Shura",
+          "aliases": ""
+        },
+        {
+          "name": "Tame Impala",
+          "aliases": ""
+        },
+        {
+          "name": "The Whiskey Wanderers",
+          "aliases": ""
+        },
+        {
+          "name": "Tove Lo",
+          "aliases": ""
+        },
+        {
+          "name": "Tove Styrke",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "The Whiskey Wanderers",
+          "predicate": "EP",
+          "value": "Midnight Sky",
+          "si": 2,
+          "superseded": false
+        },
+        {
+          "subject": "The Whiskey Wanderers",
+          "predicate": "EP",
+          "value": "Midnight Sky",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "The Whiskey Wanderers",
+          "predicate": "genre",
+          "value": "folk-rock",
+          "si": 2,
+          "superseded": false
+        },
+        {
+          "subject": "The Whiskey Wanderers",
+          "predicate": "genre",
+          "value": "folk-rock",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "favorite_genre",
+          "value": "indie and folk music",
+          "si": 2,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "listening_to",
+          "value": "Billie Eilish's 'Happier Than Ever'",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "listening_to",
+          "value": "music podcasts",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "recent_experience",
+          "value": "saw Tame Impala live at Red Rocks Amphitheatre",
+          "si": 2,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "vinyl_signed",
+          "value": "Tame Impala",
+          "si": 2,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "blog_format",
+          "value": "blog",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "favorite_artists",
+          "value": "Lorde",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "favorite_artists",
+          "value": "Halsey",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "music_gear_interest",
+          "value": "local shops and handcrafted instruments",
+          "si": 2,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "music_genre",
+          "value": "indie and folk-rock",
+          "si": 0,
+          "superseded": true
+        },
+        {
+          "subject": "user",
+          "predicate": "music_genre",
+          "value": "folk-rock",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "similar_artists",
+          "value": "The Lumineers",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "similar_artists",
+          "value": "Mumford & Sons",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "workshop_interest",
+          "value": "workshops, clinics, or jam sessions",
+          "si": 2,
+          "superseded": false
+        }
+      ],
+      "events": [
+        {
+          "summary": "user attended the Telluride Bluegrass Festival",
+          "date": "2023/05/25",
+          "si": 2
+        },
+        {
+          "summary": "user attended a music festival",
+          "date": "2023/05/23",
+          "si": 1
+        },
+        {
+          "summary": "User discovered The Whiskey Wanderers at a music festival and bought their EP 'Midnight Sky'.",
+          "date": "2023/05/20",
+          "si": 0
+        },
+        {
+          "summary": "user attended a local festival and saw The Whiskey Wanderers",
+          "date": "2023/05/25",
+          "si": 2
+        }
+      ]
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "music",
+          "purchase"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 54,
+      "candidate_count": 3,
+      "status": "answer",
+      "reason": "",
+      "answer": "local shops and handcrafted instruments",
+      "verbose": "user's music_gear_interest is 'local shops and handcrafted instruments' (stated in session 2)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "music",
+          "purchase"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 200,
+      "candidate_count": 3,
+      "status": "answer",
+      "reason": "",
+      "answer": "local shops and handcrafted instruments",
+      "verbose": "user's music_gear_interest is 'local shops and handcrafted instruments' (stated in session 2)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q6",
+    "conv_id": "multi-sessio-ba358f49",
+    "question": "How many years will I be when my friend Rachel gets married?",
+    "gold": "33",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 13,
+      "facts": 6,
+      "events": 1,
+      "preferences": 4,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "Caroline Hirons",
+          "aliases": ""
+        },
+        {
+          "name": "Dr. Dray",
+          "aliases": ""
+        },
+        {
+          "name": "Francesco Cirillo",
+          "aliases": ""
+        },
+        {
+          "name": "Gary Vaynerchuk",
+          "aliases": "GaryVee"
+        },
+        {
+          "name": "Hyram Yarbro",
+          "aliases": ""
+        },
+        {
+          "name": "Natalie Aguilar",
+          "aliases": ""
+        },
+        {
+          "name": "Nikkie",
+          "aliases": "NikkieTutorials"
+        },
+        {
+          "name": "Rachel",
+          "aliases": ""
+        },
+        {
+          "name": "Stephen Covey",
+          "aliases": ""
+        },
+        {
+          "name": "Tim Ferriss",
+          "aliases": ""
+        },
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "age_range",
+          "value": "30s",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "budget_preference",
+          "value": "not too expensive",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "experience_years",
+          "value": "5",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "skin_concerns",
+          "value": "fine lines and wrinkles",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "skin_type",
+          "value": "normal",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "works_at",
+          "value": "marketing industry",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "education_goal",
+          "value": "master's degree in marketing",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "learning_focus",
+          "value": "applying what I learn to my work and daily life",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "learning_schedule",
+          "value": "2-3 hours on weekends and 1 hour during the week",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "study_style",
+          "value": "part-time",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": [
+        {
+          "summary": "Rachel's wedding",
+          "date": "2023",
+          "si": 0
+        }
+      ]
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "Rachel"
+        ],
+        "predicate_hints": [
+          "age"
+        ],
+        "history_mode": false,
+        "event_question": true,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        8761696892870632403
+      ],
+      "path_count": 8,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "Rachel's wedding",
+      "verbose": "Rachel's wedding (2023)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "Rachel"
+        ],
+        "predicate_hints": [
+          "age"
+        ],
+        "history_mode": false,
+        "event_question": true,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        8761696892870632403
+      ],
+      "path_count": 24,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "Rachel's wedding",
+      "verbose": "Rachel's wedding (2023)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q7",
+    "conv_id": "knowledge-up-db467c8c",
+    "question": "How long have my parents been staying with me in the US?",
+    "gold": "nine months",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 5,
+      "facts": 4,
+      "events": 0,
+      "preferences": 2,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "parents",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "parents",
+          "predicate": "stay_duration",
+          "value": "nine months",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "duration_with_parents",
+          "value": "six months",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "green_card_application",
+          "value": "planning to apply",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "parents_living_with_user",
+          "value": "yes",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "consultation_preference",
+          "value": "consulting an immigration attorney",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "waiver_of_inadmissibility_interest",
+          "value": "interested in understanding the process",
+          "si": 1,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "parents"
+        ],
+        "predicate_hints": [
+          "age"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        3136665105501261973
+      ],
+      "path_count": 9,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "parents"
+        ],
+        "predicate_hints": [
+          "age"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        3136665105501261973
+      ],
+      "path_count": 15,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q8",
+    "conv_id": "knowledge-up-ed4ddc30",
+    "question": "How many dozen eggs do we currently have stocked up in our refrigerator?",
+    "gold": "20",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 6,
+      "facts": 3,
+      "events": 0,
+      "preferences": 4,
+      "same_as_edges": 0,
+      "contradictions": 1,
+      "supersessions": 1
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "Billy",
+          "aliases": ""
+        },
+        {
+          "name": "Nibbles",
+          "aliases": ""
+        },
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "egg_stock",
+          "value": "20 dozen",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "egg_stock",
+          "value": "30 dozen",
+          "si": 0,
+          "superseded": true
+        },
+        {
+          "subject": "user",
+          "predicate": "goat_names",
+          "value": "Billy and Nibbles",
+          "si": 1,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "cheese_recipe",
+          "value": "ricotta",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "cheese_recipe",
+          "value": "fresh chevre",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "fence_building_date",
+          "value": "this weekend",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "quiche_variation",
+          "value": "spinach and feta",
+          "si": 1,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "stock"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 19,
+      "candidate_count": 2,
+      "status": "answer",
+      "reason": "",
+      "answer": "20 dozen",
+      "verbose": "user's egg_stock is '20 dozen' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "stock"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 54,
+      "candidate_count": 2,
+      "status": "answer",
+      "reason": "",
+      "answer": "20 dozen",
+      "verbose": "user's egg_stock is '20 dozen' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q9",
+    "conv_id": "knowledge-up-a1eacc2a",
+    "question": "How many short stories have I written since I started writing regularly?",
+    "gold": "seven",
+    "n_sessions": 2,
+    "ingest": {
+      "sessions_ingested": 2,
+      "people": 4,
+      "facts": 4,
+      "events": 0,
+      "preferences": 5,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "completed_stories",
+          "value": "7 short stories",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "short_stories_written",
+          "value": "4",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "writing_experience_duration",
+          "value": "three months",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "writing_projects",
+          "value": "short stories, journal, memoir",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "book_character_relationship",
+          "value": "fascinated by sentient books",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "story_setting",
+          "value": "mysterious library",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "story_theme",
+          "value": "discovery",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "writing_day",
+          "value": "Sunday",
+          "si": 1,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "writing_style",
+          "value": "using a prompt or theme",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "writing"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 15,
+      "candidate_count": 4,
+      "status": "answer",
+      "reason": "",
+      "answer": "Sunday",
+      "verbose": "user's writing_day is 'Sunday' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "writing"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 24,
+      "candidate_count": 4,
+      "status": "answer",
+      "reason": "",
+      "answer": "Sunday",
+      "verbose": "user's writing_day is 'Sunday' (stated in session 1)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q10",
+    "conv_id": "single-sessi-21436231",
+    "question": "How many largemouth bass did I catch on my fishing trip to Lake Michigan?",
+    "gold": "12",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 2,
+      "facts": 6,
+      "events": 0,
+      "preferences": 0,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "caught_largemouth_bass",
+          "value": "12",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "fishing_experience",
+          "value": "some experience with fishing in Lake Michigan",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "taking_Shimano_Curado_rod_to_repair_shop",
+          "value": "has a slight crack in the guide",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "thinking_of_fly_fishing_trip",
+          "value": "Montana or Colorado next summer",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "thinking_of_restocking_tackle_box",
+          "value": "size 2 hooks and chartreuse plastic worms",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "thinking_of_taking_class",
+          "value": "learn more about fly fishing, especially tying my own flies",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "fishing",
+          "trip"
+        ],
+        "history_mode": false,
+        "event_question": true,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 8,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "fishing",
+          "trip"
+        ],
+        "history_mode": false,
+        "event_question": true,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 8,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q11",
+    "conv_id": "single-sessi-726462e0",
+    "question": "What was the discount I got on my first purchase from the new clothing brand?",
+    "gold": "10%",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 2,
+      "facts": 3,
+      "events": 0,
+      "preferences": 3,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "content_calendar_experience",
+          "value": "created for cousin's art exhibition",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "first_purchase_discount",
+          "value": "10%",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "works_at",
+          "value": "freelance writing business",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "content_calendar_engagement_metrics",
+          "value": "track engagement metrics like likes, comments, and shares",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "posting_style",
+          "value": "balance quality and consistency",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "social_media_platforms",
+          "value": "Instagram and Twitter",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "purchase"
+        ],
+        "history_mode": true,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 8,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "10%",
+      "verbose": "user's first_purchase_discount was '10%' (stated in session 0)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "purchase"
+        ],
+        "history_mode": true,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 8,
+      "candidate_count": 1,
+      "status": "answer",
+      "reason": "",
+      "answer": "10%",
+      "verbose": "user's first_purchase_discount was '10%' (stated in session 0)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q12",
+    "conv_id": "single-sessi-41275add",
+    "question": "I wanted to follow up on our previous conversation about YouTube videos for workplace posture. Can you remind me of the Mayo Clinic video you recommended?",
+    "gold": "The video is 'How to Sit Properly at a Desk to Avoid Back Pain' and the link is https://www.youtube.com/watch?v=UfOvNlX9Hh0.",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 5,
+      "facts": 0,
+      "events": 0,
+      "preferences": 0,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "Harvard Health Publishing",
+          "aliases": ""
+        },
+        {
+          "name": "Healthline",
+          "aliases": ""
+        },
+        {
+          "name": "Mayo Clinic",
+          "aliases": ""
+        },
+        {
+          "name": "Ohio State University Wexner Medical Center",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [],
+      "prefs": [],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "Mayo Clinic"
+        ],
+        "predicate_hints": [
+          "video"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        9130844680751353349
+      ],
+      "path_count": 5,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "Mayo Clinic"
+        ],
+        "predicate_hints": [
+          "video"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        9130844680751353349
+      ],
+      "path_count": 5,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q13",
+    "conv_id": "single-sessi-51b23612",
+    "question": "I was going through our previous conversation about political propaganda and humor, and I was wondering if you could remind me of that Soviet cartoon you mentioned that mocked Western culture?",
+    "gold": "Nu, pogodi!",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 6,
+      "facts": 5,
+      "events": 0,
+      "preferences": 1,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "Herblock",
+          "aliases": ""
+        },
+        {
+          "name": "Jon Stewart",
+          "aliases": ""
+        },
+        {
+          "name": "Michelle Wolf",
+          "aliases": ""
+        },
+        {
+          "name": "Stephen Colbert",
+          "aliases": ""
+        },
+        {
+          "name": "Thomas Nast",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "Herblock",
+          "predicate": "notable_work",
+          "value": "critic of President Richard Nixon during the Watergate scandal",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "Michelle Wolf",
+          "predicate": "notable_event",
+          "value": "controversial performance at the White House Correspondents' Association dinner in 2018",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "The Colbert Report",
+          "predicate": "hosted_by",
+          "value": "Stephen Colbert",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "The Daily Show",
+          "predicate": "hosted_by",
+          "value": "Jon Stewart",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "Thomas Nast",
+          "predicate": "notable_work",
+          "value": "criticized the corrupt Tammany Hall political machine",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "political_humor_preference",
+          "value": "refreshing compared to constant seriousness of politics",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "Michelle Wolf"
+        ],
+        "predicate_hints": [],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        7039635240367029457
+      ],
+      "path_count": 12,
+      "candidate_count": 6,
+      "status": "answer",
+      "reason": "",
+      "answer": "controversial performance at the White House Correspondents' Association dinner in 2018",
+      "verbose": "Michelle Wolf's notable_event is 'controversial performance at the White House Correspondents' Association dinner in 2018' (stated in session 0)",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "Michelle Wolf"
+        ],
+        "predicate_hints": [],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        7039635240367029457
+      ],
+      "path_count": 12,
+      "candidate_count": 6,
+      "status": "answer",
+      "reason": "",
+      "answer": "controversial performance at the White House Correspondents' Association dinner in 2018",
+      "verbose": "Michelle Wolf's notable_event is 'controversial performance at the White House Correspondents' Association dinner in 2018' (stated in session 0)",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q14",
+    "conv_id": "single-sessi-1c0ddc50",
+    "question": "Can you suggest some activities I can do during my commute to work?",
+    "gold": "The user would prefer suggestions related to listening to new podcasts or audiobooks, especially the genre beyond true crime or self-improvement, such as history. They may not be interested in activities that require visual attention, such as reading or watching videos, as they are commuting. The user would not prefer general podcast topics such as true crime or self-improvement, as the user wants to explore other topics.",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 38,
+      "facts": 3,
+      "events": 0,
+      "preferences": 3,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "Aaron Mahnke",
+          "aliases": ""
+        },
+        {
+          "name": "Andy Zaltzman",
+          "aliases": ""
+        },
+        {
+          "name": "Bridget Todd",
+          "aliases": ""
+        },
+        {
+          "name": "Chuck Bryant",
+          "aliases": ""
+        },
+        {
+          "name": "Conan O'Brien",
+          "aliases": ""
+        },
+        {
+          "name": "Crissle West",
+          "aliases": ""
+        },
+        {
+          "name": "Dan Carlin",
+          "aliases": ""
+        },
+        {
+          "name": "Dave Anthony",
+          "aliases": ""
+        },
+        {
+          "name": "Emilie Aries",
+          "aliases": ""
+        },
+        {
+          "name": "Erik Larson",
+          "aliases": ""
+        },
+        {
+          "name": "Gareth Reynolds",
+          "aliases": ""
+        },
+        {
+          "name": "Georgia Hardstark",
+          "aliases": ""
+        },
+        {
+          "name": "Griffin McElroy",
+          "aliases": ""
+        },
+        {
+          "name": "Guy Raz",
+          "aliases": ""
+        },
+        {
+          "name": "Harold Schechter",
+          "aliases": ""
+        },
+        {
+          "name": "Jad Abumrad",
+          "aliases": ""
+        },
+        {
+          "name": "Jared Diamond",
+          "aliases": ""
+        },
+        {
+          "name": "Jason Mantzoukas",
+          "aliases": ""
+        },
+        {
+          "name": "Jeffrey Cranor",
+          "aliases": ""
+        },
+        {
+          "name": "John Oliver",
+          "aliases": ""
+        },
+        {
+          "name": "Joseph Fink",
+          "aliases": ""
+        },
+        {
+          "name": "Josh Clark",
+          "aliases": ""
+        },
+        {
+          "name": "June Diane Raphael",
+          "aliases": ""
+        },
+        {
+          "name": "Justin McElroy",
+          "aliases": ""
+        },
+        {
+          "name": "Karen Kilgariff",
+          "aliases": ""
+        },
+        {
+          "name": "Kid Fury",
+          "aliases": ""
+        },
+        {
+          "name": "Neil deGrasse Tyson",
+          "aliases": ""
+        },
+        {
+          "name": "Paul Scheer",
+          "aliases": ""
+        },
+        {
+          "name": "Robert Krulwich",
+          "aliases": ""
+        },
+        {
+          "name": "Rusty Quill",
+          "aliases": ""
+        },
+        {
+          "name": "Stacy Schiff",
+          "aliases": ""
+        },
+        {
+          "name": "Steven Johnson",
+          "aliases": ""
+        },
+        {
+          "name": "Tim Ferriss",
+          "aliases": ""
+        },
+        {
+          "name": "Travis McElroy",
+          "aliases": ""
+        },
+        {
+          "name": "Travis Vengroff",
+          "aliases": ""
+        },
+        {
+          "name": "William L. Shirer",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "Guns, Germs, and Steel",
+          "predicate": "author",
+          "value": "Jared Diamond",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "Guns, Germs, and Steel",
+          "predicate": "awards",
+          "value": "Pulitzer Prize for General Nonfiction (1998), Aventis Prize for Science Books (1998), Phi Beta Kappa Award in Science (1998)",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "commute_time",
+          "value": "40 minutes each way",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "interested_in",
+          "value": "history podcasts",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "interested_in",
+          "value": "Guns, Germs, and Steel",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "podcast_genres",
+          "value": "true crime, self-improvement, history, science",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "commute",
+          "works_at"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": [
+          "suggest",
+          "some",
+          "activities",
+          "during",
+          "commute"
+        ]
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 43,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_value",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "commute",
+          "works_at"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": [
+          "suggest",
+          "some",
+          "activities",
+          "during",
+          "commute"
+        ]
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 43,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_value",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q15",
+    "conv_id": "single-sessi-0edc2aef",
+    "question": "Can you suggest a hotel for my upcoming trip to Miami?",
+    "gold": "The user would prefer suggestions of hotels in Miami that offer great views, possibly of the ocean or the city skyline, and have unique features such as a rooftop pool or a hot tub on the balcony. They may not prefer suggestions of basic or budget hotels without these features.",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 2,
+      "facts": 4,
+      "events": 0,
+      "preferences": 6,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "The Edgewater Hotel",
+          "predicate": "has_hot_tub_on_balcony",
+          "value": "true",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "The Edgewater Hotel",
+          "predicate": "offers_fireplace_rooms",
+          "value": "true",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "The Edgewater Hotel",
+          "predicate": "offers_room_service_breakfast",
+          "value": "true",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "location",
+          "value": "Seattle",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "hotel_features",
+          "value": "rooftop pool or hot tub on the balcony",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "hotel_features",
+          "value": "great view of the city",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "package_inclusions",
+          "value": "room with hot tub on the balcony facing the Space Needle",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "package_inclusions",
+          "value": "room with fireplace",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "package_inclusions",
+          "value": "room with hot tub on the balcony and complimentary room service breakfast",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "room_service_breakfast",
+          "value": "dietary restrictions",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "trip"
+        ],
+        "history_mode": false,
+        "event_question": true,
+        "value_hints": [
+          "suggest",
+          "hotel",
+          "upcoming",
+          "trip",
+          "miami"
+        ]
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 12,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "trip"
+        ],
+        "history_mode": false,
+        "event_question": true,
+        "value_hints": [
+          "suggest",
+          "hotel",
+          "upcoming",
+          "trip",
+          "miami"
+        ]
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 12,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    }
+  },
+  {
+    "qid": "q16",
+    "conv_id": "single-sessi-d24813b1",
+    "question": "I'm thinking of inviting my colleagues over for a small gathering. Any tips on what to bake?",
+    "gold": "The user would prefer baking suggestions that take into account their previous success with the lemon poppyseed cake, such as variations of that recipe or other desserts that share similar qualities. They might prefer suggestions that balance impressiveness with manageability, considering their previous experience. The user may not prefer overly complex or unfamiliar recipes, or suggestions that do not build upon their existing baking experience.",
+    "n_sessions": 1,
+    "ingest": {
+      "sessions_ingested": 1,
+      "people": 2,
+      "facts": 2,
+      "events": 0,
+      "preferences": 5,
+      "same_as_edges": 0,
+      "contradictions": 0,
+      "supersessions": 0
+    },
+    "graph": {
+      "persons": [
+        {
+          "name": "assistant",
+          "aliases": ""
+        },
+        {
+          "name": "user",
+          "aliases": ""
+        }
+      ],
+      "facts": [
+        {
+          "subject": "user",
+          "predicate": "made",
+          "value": "chocolate chip cookies",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "made",
+          "value": "lemon poppyseed cake",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "prefs": [
+        {
+          "subject": "user",
+          "predicate": "cake_flavor",
+          "value": "chocolate",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "cake_flavor",
+          "value": "lemon",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "cake_type",
+          "value": "pound cake",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "cookie_texture",
+          "value": "chewy",
+          "si": 0,
+          "superseded": false
+        },
+        {
+          "subject": "user",
+          "predicate": "lavender_usage",
+          "value": "dried lavender buds",
+          "si": 0,
+          "superseded": false
+        }
+      ],
+      "events": []
+    },
+    "trace_len3": {
+      "max_len": 3,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "gathering"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 9,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    },
+    "trace_len6": {
+      "max_len": 6,
+      "plan": {
+        "people": [
+          "user"
+        ],
+        "predicate_hints": [
+          "gathering"
+        ],
+        "history_mode": false,
+        "event_question": false,
+        "value_hints": []
+      },
+      "resolved_person_ids": [
+        4301157074966527610
+      ],
+      "path_count": 9,
+      "candidate_count": 0,
+      "status": "not_found",
+      "reason": "no_matching_fact",
+      "answer": "not found in memory: no stored fact matches this question",
+      "verbose": "",
+      "procedure": "algo.SSpaths"
+    }
+  }
+]

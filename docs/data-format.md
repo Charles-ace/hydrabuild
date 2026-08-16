@@ -63,7 +63,7 @@ chips.
 | Type | Meaning | Properties |
 | --- | --- | --- |
 | `MENTIONED_IN` | statement node → session it was stated in | `id`, `session_index` |
-| `SAME_AS` | two `Person` nodes denote the same identity (alias resolution) | `id`, `confidence` |
+| `SAME_AS` | two `Person` nodes denote the same identity (alias lists & normalized string similarity; graph-topology is a future extension) | `id`, `confidence` |
 | `CONTRADICTS` | newer statement contradicts an older one (different value, same subject/predicate) | `id`, `since` |
 | `SUPERSEDES` | newer statement replaces the older one (chronology) | `id`, `since` |
 | `CAUSED_BY` | event → triggering event (LLM extractor) | `id` |
