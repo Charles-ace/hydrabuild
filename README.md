@@ -3,13 +3,54 @@
 Graph-native agent memory layer for **HydraDB**, built for the Hack Hydra — Track 3
 (Memory & Context Retrieval) hackathon, Aug 12–20 2026.
 
+## Problem
+
+LLM agents forget. The standard fix — stuffing raw conversation history into a
+prompt or a vector store — either blows the context window or retrieves
+semantically similar-but-wrong text, and LLMs happily *invent* an answer when
+the memory is silent. Agent memory needs three properties a retrieval system
+must not fake: (1) exact-value retrieval ("what is the standup format *now*"
+vs "*last month*" must not blur), (2) temporal correctness (a superseded fact
+must be ranked below the current one), and (3) **structural abstention** —
+when the graph provably contains no matching fact, the system must say "not
+found" rather than guess. This project treats those as first-class design
+constraints, not accidents of prompting.
+
+## What was built
+
 Conversation history is extracted into a property graph of `Person`, `Fact`,
 `Event`, `Preference` and `Session` nodes. Queries are answered by bounded graph
 traversal (`algo.SSpaths`) with an explicit **abstention protocol**: when the
 graph does not contain a fact matching the question, the system says "not found"
 instead of inventing an answer. Contradictions are recorded as
 `CONTRADICTS` / `SUPERSEDES` edges, so the system can answer "what was X before
-the switch?" and "what is X now?" from the same graph.
+the switch?" and "what is X now?" from the same graph. Includes a live
+LongMemEval-s benchmark harness (`bench/`) with honest, measured results
+(see the gap analysis) and a recorded demo walkthrough (`demo/demo.mp4`).
+
+## Why HydraDB (and what breaks without it)
+
+The memory layer is a *graph query* end to end, not a document store:
+
+- Retrieval is **bounded path traversal** (`algo.SSpaths` from the persona
+  node through `MENTIONED_IN` edges to statement nodes) — the abstention
+  protocol depends on the traversal returning *exactly* the statements a
+  person is connected to, and abstaining when the set is empty.
+- **Temporal correctness** is encoded as `CONTRADICTS`/`SUPERSEDES` edges
+  written by the ingest contradiction pass and read back during traversal
+  ranking — a table scan or vector similarity cannot express "superseded in
+  session 4" as a first-class graph relationship.
+- Ingestion is **idempotent by construction**: deterministic 63-bit content
+  hashes + `UNWIND ... MERGE` upserts, so re-running a conversation never
+  duplicates nodes.
+
+Without HydraDB, the core claims collapse: a vector store loses exact-value
+and abstention guarantees, and an LLM-in-the-loop re-reader replaces
+structural abstention with statistical guessing — the exact failure mode this
+build exists to avoid. The "Verified HydraDB behaviour" section below records
+the real engine quirks the implementation had to work around, which is part of
+the point: this is a live graph-node integration, not a thin wrapper around a
+text database.
 
 ## Status
 
@@ -47,9 +88,9 @@ conversation sessions
   QueryService                       parse -> resolve -> SSpaths -> rank -> answer/abstain
 ```
 
-## Quickstart
+## Quickstart (PowerShell; needs Python 3.11+ and Docker)
 
-```bash
+```powershell
 # 1. HydraDB node (docs/hydradb-node.md has the exact verified run config:
 #    the current image REQUIRES the full env set below — bare `docker run`
 #    exits with "invalid environment variable CLOUD_PROVIDER value `null`")
@@ -70,14 +111,17 @@ docker run -d --name hydra-node -p 7687:7687 -p 8443:8443 -p 9090:9090 \
 python -m venv .venv
 .venv/Scripts/pip install -r requirements.txt
 
-# 3. ingest the sample conversations and ask questions
+# 3. demo web app (mock extractor — no API key needed)
 $env:PYTHONPATH = "src"
-.venv/Scripts/python -c "from hydramem.server import *"   # or run the demo UI:
-
-# 4. demo web app
-$env:PYTHONPATH = "src"; .venv/Scripts/uvicorn hydramem.server:app --port 8000
+.venv/Scripts/uvicorn hydramem.server:app --port 8000
 #   open http://localhost:8000/  (serves web/index.html + /api/*)
+#   health check: Invoke-RestMethod http://localhost:8000/api/health
 ```
+
+On Linux/macOS replace steps 1–2 with
+`mkdir -p hydradb-data/store hydradb-data/cache && printf '%s\n' 'local-development-token-32-bytes' > hydradb-data/auth-token`,
+the same `docker run` (without the backticks), `.venv/bin/pip install -r requirements.txt`,
+and `HYDRA_MEM_LLM_MODE` defaults are read from the environment in `src/hydramem/config.py`.
 
 `HYDRA_MEM_LLM_BASE_URL` / `HYDRA_MEM_LLM_API_KEY` / `HYDRA_MEM_LLM_MODEL`
 configure the extractor LLM (OpenRouter-compatible, provider-agnostic).
@@ -254,6 +298,22 @@ testing; the benchmark numbers above are exclusively from `LLMExtractor` with
 a live OpenRouter key. Mock mode is inapplicable to real LongMemEval
 conversations (see `bench-results/mock-smoke.*` for the 0-extraction
 evidence).
+
+## Attribution & dependencies
+
+- **LongMemEval** — benchmark conversations and questions in `data/`
+  (`longmemeval_oracle_sample.json`, `longmemeval_abstain_sample.json`) are
+  samples derived from the [LongMemEval](https://github.com/sierra-research/LongMemEval)
+  dataset (500-question, cleaned-2025-09 release), used under the LongMemEval
+  repository license. The samples were selected to cover the six question
+  categories; gold answers are the official ones.
+- **HydraDB** — the graph engine (`ghcr.io/hydra-db/hydradb`, AGPL-3.0) is
+  used strictly as an external service over Bolt; no HydraDB source code is
+  vendored or copied into this repository. The verified local run config in
+  `docs/hydradb-node.md` was derived empirically from the published image.
+- **Python runtime deps** (`requirements.txt`): `fastapi`, `uvicorn[standard]`,
+  `neo4j` (Bolt driver), `httpx`. Third-party datasets/libraries are not
+  redistributed inside this repo beyond the derived sample files above.
 
 ## Layout
 
