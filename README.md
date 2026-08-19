@@ -26,7 +26,9 @@ instead of inventing an answer. Contradictions are recorded as
 `CONTRADICTS` / `SUPERSEDES` edges, so the system can answer "what was X before
 the switch?" and "what is X now?" from the same graph. Includes a live
 LongMemEval-s benchmark harness (`bench/`) with honest, measured results
-(see the gap analysis) and a recorded demo walkthrough (`demo/demo.mp4`).
+(see the gap analysis) and a recorded demo walkthrough — the demo video is
+submitted as a link on the hackathon submission form (YouTube link will be
+pasted here once the video is published).
 
 ## Why HydraDB (and what breaks without it)
 
